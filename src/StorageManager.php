@@ -266,10 +266,10 @@ class StorageManager
         if (!$file->isValid()) {
             $error = $file->getError();
         } elseif ($file->getSize() > $config['max_size']) {
-            $error = 'upload.ERROR_SIZE_EXCEED';
+            $error = 'ERROR_SIZE_EXCEED';
         } elseif (!empty($config['allow_files']) &&
-            !in_array('.'.$file->getClientOriginalExtension(), $config['allow_files'])) {
-            $error = 'upload.ERROR_TYPE_NOT_ALLOWED';
+            !in_array('.' . strtolower($file->getClientOriginalExtension()), $config['allow_files'])) {
+            $error = 'ERROR_TYPE_NOT_ALLOWED';
         }
 
         return $error;
